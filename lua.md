@@ -113,4 +113,21 @@ while true do
 end
 ```
 
-`while true do` runs *every frame*, excluding frames of, per say, lag.
+The code above results in the `latest_logs.txt` file looking something like this:
+```
+Room switch: ref room rm_menu
+LUA: In the menu! This will output every frame you're in the menu.
+LUA: In the menu! This will output every frame you're in the menu.
+LUA: In the menu! This will output every frame you're in the menu.
+LUA: In the menu! This will output every frame you're in the menu.
+LUA: In the menu! This will output every frame you're in the menu.
+Room switch: ref room rm_play
+LUA: In the menu! This will output every frame you're in the menu.
+LUA: In the gamemodes menu! This will output every frame you're in THIS room as well.
+LUA: In the gamemodes menu! This will output every frame you're in THIS room as well.
+LUA: In the gamemodes menu! This will output every frame you're in THIS room as well.
+LUA: In the gamemodes menu! This will output every frame you're in THIS room as well.
+LUA: In the gamemodes menu! This will output every frame you're in THIS room as well.
+```
+
+Another thing to mention: `while true do` runs *every frame*, excluding frames of any lag.
