@@ -29,6 +29,7 @@ There are a few important things to remember when developing in Lua for Sunrise:
 2. Lua's native `print()` function will print to the game's output, but can only be seen if running the game within the GameMaker IDE, which obviously isn't possible.
 3. If playing through Steam, all abilities to earn achievements will be disabled whenever ANY mod is active.
 4. When interacting with objects, the objects specified MUST exist, otherwise the code will crash Sunrise.
+5. You cannot use Lua libraries that use `require()`, nor can you use `io`, `os`, or `debug` functions.
 
 ## Interacting with Sunrise
 
