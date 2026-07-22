@@ -89,6 +89,14 @@ print(tostring(object))
 
 The code above will store the created `obj_solid_object` to the `object` variable, then print it to the IDE output.
 
+### RemoveObject
+Deletes all instances of an object in a room.
+```
+game_call('RemoveObject', string.format("obj_solid_object"))
+```
+
+The code above will remove every instance of `obj_solid_object` spawned in. The result of this line is always zero.
+
 ### GetObjectVariable
 Gets the value of a variable present in an object. Returns -1 if said variable doesn't exist in the object specified.
 ```
@@ -106,7 +114,73 @@ valueofvar = game_call('SetObjectVariable', string.format("obj_col1, collision_f
 
 The code above will set the `collision_flag` game object variable in `obj_col1` to `false`, which makes the player (if in the room) fall through the objects, then store the new value just set in the `valueofvar` Lua variable.
 
-## Checks and Loops
+### PlaySound
+Plays a sound in-game with volume, loop, and speed options. The output will always be 0.
+```
+game_call('PlaySound', string.format("snd_highlight, false, 1, 1"))
+```
+
+The code above will play `snd_highlight`, will not loop, has a volume of 1, and a speed of 1 respectively.
+```
+sound_name, loop, volume, pitch"
+```
+
+### StopSound
+Stops all instances of a sound in-game. The output will always be 0.
+```
+game_call('StopSound', string.format("snd_highlight"))
+```
+
+The code above will stop every instance of `snd_highlight` playing.
+
+### PlaySoundRaw
+Similar to that of `PlaySound`, except it bypasses the in-game audio buffers and settings and plays it directly. The output will always be 0.
+```
+game_call('PlaySoundRaw', string.format("snd_highlight, false, 1, 1"))
+```
+
+The code above will play `snd_highlight`, will not loop, has a volume of 1, and a speed of 1 respectively.
+
+### KeyCheck
+This will check for a specific key being held down on the keyboard. This doesn't apply to controller input, the function for that is below.
+```
+key = game_call('KeyCheck', string.format("vk_down"))
+```
+
+The code above will check if the Down Arrow Key, or `vk_down`, is being pressed. If it is, it returns true and stores that in the `key` Lua variable.
+
+### InputCheck
+This will check for a specific button being held down on either the keyboard OR the controller. For exclusively keyboard input, the function for that is above.
+```
+key = game_call('InputCheck', string.format("INPUT_VERB.ACCEPT"))
+```
+
+The code above will check if the `ACCEPT` Input Verb is being pressed. If it is, it returns true and stores that in the `key` Lua variable. **Please note that you MUST append `INPUT_VERB` at the start.**
+
+#### Proper InputVerbs
+The following is a list of valid verbs to check for:
+1. `ACCEPT` - Action Button (A / Cross / Space Bar)
+2. `CANCEL` - Back Button (B / Circle / Backspace)
+3. `SPECIAL` - Extra Button 1 (X / Square / Shift)
+4. `ACTION` - Extra Button 2 (Y / Triangle / Enter)
+5. `UP` - D-Pad Up / Arrow Key Up
+6. `DOWN` - D-Pad Down / Arrow Key Down
+7. `LEFT` - D-Pad Left / Arrow Key Left
+8. `RIGHT` - D-Pad Right / Arrow Key Right
+9. `JOY_UP` - Left Stick Up / W Key
+10. `JOY_DOWN` - Left Stick Up / S Key
+11. `JOY_LEFT` - Left Stick Up / A Key
+12. `JOY_RIGHT` - Left Stick Right / D Key
+13. `RJOY_UP` - Right Stick Up / I Key
+14. `RJOY_DOWN` - Right Stick Down / K Key
+15. `RJOY_LEFT` - Right Stick Left / J Key
+16. `RJOY_RIGHT` - Right Stick Right / L Key
+17. `L1` - Left Bumper / Page Up
+18. `R1` - Right Bumper / Page Down
+19. `PLACE` - Left Trigger / Insert Key
+20. `DELETE` - Right Trigger / Delete Key
+
+## Checks, Loops, and Functions
 
 Lua for Sunrise supports `while true do` loops. These are important if you want to constantly check if, per say, the user enters a specific room:
 ```
@@ -139,6 +213,29 @@ LUA: In the gamemodes menu! This will output every frame you're in THIS room as 
 ```
 
 Another thing to mention: `while true do` runs *every frame*, excluding frames of any lag.
+
+### Functions
+
+Functions are kept the same as in normal Lua. [You can read more about it here.](https://www.lua.org/pil/5.html)
+
+### Detecting Input
+
+To detect input in Lua for Sunrise, you can set up a `while true do` loop to check for `InputCheck` or `KeyCheck` being `true` at any point, and therefore running something like a function:
+```
+while true do
+  downkey = game_call('KeyCheck', string.format("vk_down"))
+
+  if downkey == true then
+    incCount()
+  end
+end
+
+function incCount (n)
+  n = n + 1
+end
+```
+
+The above function will check if you're pressing the `vk_down` key every frame, and if you are at any point, it'll call the function `incCount()`, which adds to the variable `n`. Variables are always initialized as `nil`.
 
 ## Error Handling
 
