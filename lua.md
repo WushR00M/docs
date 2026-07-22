@@ -6,6 +6,7 @@ Specifically, Sunrise's Lua integration was built on the foundation of [Lua 5.4.
 ## Getting Started
 
 When opening Sunrise for the first time, the game will create three directories in the game's save folder (whether that be `%appdata%\Sunrise` or something else, it mostly depends on your system's configuration, and whether or not the game is being ran on Windows or emulated through Wine or Valve's Proton emulator).
+
 The one you'll need to look through is the "mods" directory. This is where you can find, store, and create mods for Sunrise that are instantly detected and loaded upon game boot. **Please be aware: the game WILL load ANY Lua file placed in there.**
 
 *Sunrise is also not compatible with Luau, the variation of Lua used by Roblox.*
