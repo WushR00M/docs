@@ -15,7 +15,9 @@ Any lag experienced upon game boot due to loading Lua files will show this scree
 ## Getting Started
 
 To start, simply create a .lua file in the folder. For this example, the code below will print to the `latest_log.txt` file present in the root of the game's save folder:
-```game_call('PrintToLog', string.format("Hello World!"))```.
+```
+game_call('PrintToLog', string.format("Hello World!"))
+```
 
 Save it and run the game. You should find `LUA: Hello World!` sent to the output in the file amongst the rest of the game's normal logging.
 This file will also be recognized in the game's "Mods" menu, which can be accessed below the Settings on the Main Menu.
