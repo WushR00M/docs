@@ -113,7 +113,7 @@ while true do
 end
 ```
 
-The code above results in the `latest_logs.txt` file looking something like this:
+The code above results in the `latest_log.txt` file looking something like this:
 ```
 Room switch: ref room rm_menu
 LUA: In the menu! This will output every frame you're in the menu.
@@ -131,3 +131,17 @@ LUA: In the gamemodes menu! This will output every frame you're in THIS room as 
 ```
 
 Another thing to mention: `while true do` runs *every frame*, excluding frames of any lag.
+
+## Error Handling
+
+All Lua errors are pushed to the `latest_log.txt` file:
+```
+Lua error found: [string "while true do..."]:9: 'end' expected (to close 'while' at line 1) near <eof>
+```
+
+The example above is normal for ALL Lua errors, except for unknown `game_call()` functions, which outputs `error:unknown_function` to a potentially hooked on variable:
+```
+fake_fun = game_call('ThisFunctionDoesNotExist', string.format(""))
+```
+
+The code above will error out and fake_fun will contain `error:unknown_function`.
