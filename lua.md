@@ -30,13 +30,17 @@ The list, as of v2026.5.0, includes:
 
 ### PrintToLog
 Allows for the script to print directly to the game's log file, serves as the replacement to Lua's native `print()` function.
-```game_call('PrintToLog', string.format("Hello World!"))```
+```
+game_call('PrintToLog', string.format("Hello World!"))
+```
 
 The code above will print "Hello World!" prefixed with `LUA:` to the game's logs.
 
 ### GetCurrentRoom
 Gets the current room the game is in.
-```game_call('GetCurrentRoom', string.format(""))```
+```
+game_call('GetCurrentRoom', string.format(""))
+```
 
 The code above is self-explanatory. For example, if you were in the Main Menu, this would return with `rm_menu`.
 This can be hooked onto a variable:
@@ -49,7 +53,9 @@ The code above will store the current room to a variable titled `room`, then pri
 
 ### SetCurrentRoom
 Switches the game's current room.
-```game_call('SetCurrentRoom', string.format("rm_menu"))```
+```
+game_call('SetCurrentRoom', string.format("rm_menu"))
+```
 
 The code above will set the current room to `rm_menu`, which is the Main Menu.
 This can also be hooked onto a variable, where the room you switch to will also be the result:
@@ -62,7 +68,9 @@ The code above switches the room to `rm_menu` and stores that into the `room` va
 
 ### SpawnObject
 Creates an object on a depth level of zero.
-```game_call('SpawnObject', string.format("obj_solid_object, 64, 32"))```
+```
+game_call('SpawnObject', string.format("obj_solid_object, 64, 32"))
+```
 
 The code above will create a solid collision object at X: 64, Y: 32 in the current room.
 This can be hooked onto variables, where the resulting object created will be the result:
@@ -75,14 +83,18 @@ The code above will store the created `obj_solid_object` to the `object` variabl
 
 ### GetObjectVariable
 Gets the value of a variable present in an object. Returns -1 if said variable doesn't exist in the object specified.
-```valueofvar = game_call('GetObjectVariable', string.format("obj_col1, collision_flag"))```
+```
+valueofvar = game_call('GetObjectVariable', string.format("obj_col1, collision_flag"))
+```
 
 The code above will store the value of `obj_col` (collision tag)'s `collision_flag` game object variable in a `valueofvar` Lua variable.
 In this case, it would return `true`.
 
 ### SetObjectVariable
 Allows for changing existing variables in an object. If it doesn't exist, it simply returns as -1, otherwise it returns the new value of the variable you just set.
-```valueofvar = game_call('SetObjectVariable', string.format("obj_col1, collision_flag, false"))```
+```
+valueofvar = game_call('SetObjectVariable', string.format("obj_col1, collision_flag, false"))
+```
 
 The code above will set the `collision_flag` game object variable in `obj_col1` to `false`, which makes the player (if in the room) fall through the objects, then store the new value just set in the `valueofvar` Lua variable.
 
